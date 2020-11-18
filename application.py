@@ -19,8 +19,10 @@ def index():
     if reg_form.validate_on_submit():
         username = reg_form.username.data
         password = reg_form.password.data
+        #hash pwrd
+        hash_pwrd = pbkdf2_sha256.hash(password)
         #Add user to db
-        user = User(username=username, password=password)
+        user = User(username=username, password=hash_pwrd)
         db.session.add(user)
         db.session.commit()
         return redirect(url_for("login"))
