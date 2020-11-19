@@ -1,4 +1,6 @@
 from flask import Flask, render_template, redirect, url_for
+from flask_login import LoginManager, login_user, current_user, login_required, logout_user
+
 from wtform_fields import *
 from models import *
 
@@ -11,6 +13,15 @@ app.config['SQLALCHEMY_DATABASE_URI']='postgres://ztgdtarcblhscz:f75e1a6cd2bcfd8
 
 db = SQLAlchemy(app)
 
+# Flask login configuration
+login = LoginManager(app)
+login.init_app(app)
+
+@login.user_loader
+def load_user(id_):
+
+    return User.query.get(int(id_))
+
 @app.route("/", methods=['GET', 'POST'])
 def index():
 
@@ -19,8 +30,10 @@ def index():
     if reg_form.validate_on_submit():
         username = reg_form.username.data
         password = reg_form.password.data
+
         #hash pwrd
         hash_pwrd = pbkdf2_sha256.hash(password)
+
         #Add user to db
         user = User(username=username, password=hash_pwrd)
         db.session.add(user)
@@ -31,12 +44,36 @@ def index():
 
 @app.route("/login", methods=["GET", "POST"])
 def login():
+
     login_form = LoginForm()
-    #allow login if validatio  succeed
+
+    #allow login if validation succeed
     if login_form.validate_on_submit():
-        return "Logged in"
+        user_object = User.query.filter_by(username=login_form.username.data).first()
+        
+        login_user(user_object)
+        return redirect(url_for('chat'))
     
     return render_template("login.html", form=login_form)
 
+# Prevent non-logged-in users from chat access
+@app.route("/chat", methods=['GET', 'POST'])
+@login_required
+def chat():
+
+    if not current_user.is_authenticated:
+
+        return "You must be logged in to access the chat"
+
+    return "In chat!"
+
+# Logout
+@app.route("/logout", methods=['GET'])
+def logout():
+
+    logout_user()
+    return "Logged Out"
+
+# Run debug
 if __name__ == "__main__":
     app.run(debug=True)
