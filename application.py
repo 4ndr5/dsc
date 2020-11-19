@@ -61,7 +61,6 @@ def login():
 
 # Prevent non-logged-in users from chat access
 @app.route("/chat", methods=['GET', 'POST'])
-@login_required
 def chat():
 
     if not current_user.is_authenticated:
