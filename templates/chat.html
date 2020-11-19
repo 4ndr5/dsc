@@ -13,7 +13,10 @@
     <div id="main-section">
         <!-- Room selection -->
         <nav id="sidebar">
-
+            <h4>ROOMS</h4>
+            {% for room in rooms %}
+               <p class="select-room">{{ room|title }}</p>
+            {% endfor %}
         </nav>
         <!-- Message area -->
         <div id="rightside-pannel">
@@ -30,10 +33,16 @@
         </div>
    
     </div>
+    <!--Get username-->
+    <script type="text/javascript">
+        const username = `{{ username }}`;
+    </script>
 
+    <!--Custom chat js-->
+    <script src="{{ url_for('static' , filename='scripts/chat_page.js') }}"></script>
     <!--Socket IO JS-->
     <script src="//cdnjs.cloudflare.com/ajax/libs/socket.io/2.2.0/socket.io.js" integrity="sha256-yr4fRk/GU1ehYJPAs8P4JlTgu0Hdsp4ZKrx8bDEDC3I=" crossorigin="anonymous"></script>
     <!--Custom Socket IO JS-->
-    <script src="{{ url_for('static', filename='scripts/socketio.js') }}"></script>
+    <script src="{{ url_for('static' , filename='scripts/socketio.js') }}"></script>
 </body>
 </html>
