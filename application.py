@@ -1,8 +1,9 @@
 from flask import Flask, render_template, redirect, url_for, flash
 from flask_login import LoginManager, login_user, current_user, login_required, logout_user
-
+from flask_socketio import SocketIO, send, emit
 from wtform_fields import *
 from models import *
+
 
 # App configuartion
 app = Flask(__name__)
@@ -12,6 +13,8 @@ app.secret_key = 'csrf.token'
 app.config['SQLALCHEMY_DATABASE_URI']='postgres://ztgdtarcblhscz:f75e1a6cd2bcfd802b30e756567c9e448190fa5dd1a51c2670a3d6919fc379ac@ec2-54-224-175-142.compute-1.amazonaws.com:5432/d8h1aim9ltuv4k' 
 
 db = SQLAlchemy(app)
+#Initialize Flask Socketio
+socketio= SocketIO(app)
 
 # Flask login configuration
 login = LoginManager(app)
@@ -63,11 +66,11 @@ def login():
 @app.route("/chat", methods=['GET', 'POST'])
 def chat():
 
-    if not current_user.is_authenticated:
-        flash('Please log in.', 'danger')
-        return redirect(url_for('login'))
+    #if not current_user.is_authenticated:
+     #   flash('Please log in.', 'danger')
+      #  return redirect(url_for('login'))
 
-    return "In chat!"
+    return render_template('chat.html')
 
 # Logout
 @app.route("/logout", methods=['GET'])
@@ -77,6 +80,13 @@ def logout():
     flash('Logged out successfully', 'success')
     return redirect(url_for('login'))
 
+@socketio.on('message')
+def message(data):
+
+    #print(f"\n\n{data}\n\n")
+    send(data)
+    #emit("event", 'this is a custom event message')
+
 # Run debug
 if __name__ == "__main__":
-    app.run(debug=True)
+    socketio.run(app, debug=True)
