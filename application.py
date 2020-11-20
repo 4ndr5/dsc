@@ -1,3 +1,4 @@
+import os
 from time import localtime, strftime
 from flask import Flask, render_template, redirect, url_for, flash
 from flask_login import LoginManager, login_user, current_user, login_required, logout_user
@@ -8,10 +9,10 @@ from models import *
 
 # App configuartion
 app = Flask(__name__)
-app.secret_key = 'csrf.token'
+app.secret_key = os.environ.get('SECRET')
 
 # Database configuration
-app.config['SQLALCHEMY_DATABASE_URI']='postgres://ztgdtarcblhscz:f75e1a6cd2bcfd802b30e756567c9e448190fa5dd1a51c2670a3d6919fc379ac@ec2-54-224-175-142.compute-1.amazonaws.com:5432/d8h1aim9ltuv4k' 
+app.config['SQLALCHEMY_DATABASE_URI']=os.environ.get('DATABASE_URL')
 
 db = SQLAlchemy(app)
 #Initialize Flask Socketio
@@ -101,4 +102,4 @@ def leave(data):
     send({'msg': data['username'] + "has left the" + data['room'] + "room."}, room=data['room'])
 # Run debug
 if __name__ == "__main__":
-    socketio.run(app, debug=True)
+    app.run()
