@@ -15,6 +15,7 @@ app.secret_key = os.environ.get('SECRET')
 app.config['SQLALCHEMY_DATABASE_URI']=os.environ.get('DATABASE_URL')
 
 db = SQLAlchemy(app)
+
 #Initialize Flask Socketio
 socketio= SocketIO(app)
 ROOMS = ["lounge", "news", "games", "coding"]
@@ -100,6 +101,6 @@ def leave(data):
 
     leave_room(data['room'])
     send({'msg': data['username'] + "has left the" + data['room'] + "room."}, room=data['room'])
-# Run debug
+# Run, debug
 if __name__ == "__main__":
     app.run()
