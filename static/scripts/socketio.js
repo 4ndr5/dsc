@@ -88,7 +88,7 @@ document.addEventListener('DOMContentLoaded', () => {
         socket.emit('leave', {'username': username, 'room': room});
 
         document.querySelectorAll('.select-room').forEach(p => {
-            p.style.color = "black";
+            p.style.color = "#99aab5";
         });
     }
 
