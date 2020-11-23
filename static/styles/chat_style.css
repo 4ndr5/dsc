@@ -19,15 +19,20 @@ body{
     padding-top: 3em;
     padding-right:1em;
     border-right: 0.5px solid #898c91;
+    background-color: #313233;
 }
 
 #sidebar p {
     padding-left: 2em;
     padding-right:2em;
+    color: #636363;
+    background-color: #313233;
+
 }
 
 #sidebar p:hover {
     background-color: #ffc107;
+    color: #a4a6a8;
 }
 
 #sidebar h4 {padding-left: 0.5em;}
