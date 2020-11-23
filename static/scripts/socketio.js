@@ -55,7 +55,7 @@ document.addEventListener('DOMContentLoaded', () => {
 
 
         }
-        // scrollDownChatWindow();
+        scrollDownChatWindow();
     });
 
     //send msg
@@ -78,23 +78,52 @@ document.addEventListener('DOMContentLoaded', () => {
             }
         }
     });
-    //Leave room
-    function leaveRoom(room){
-        socket.emit('leave', {'username': username, 'room' : room});
-    }
-    //Join room
-    function joinRoom(room) {
-        socket.emit('join', {'username': username, 'room' : room});
-        //Clear msg area
-        document.querySelector('#display-message-section').innerHTML= ''
-        //autofocus on text box
-        document.querySelector('#user_message').focus();
-    }
-    //print system msg
-    function printSysMsg(msg) {
-        const p = document.createElement('p');
-        p.innerHTML = msg;
-        document.querySelector('#display-message-section').append(p);
+     // Logout from chat
+     document.querySelector("#logout-btn").onclick = () => {
+        leaveRoom(room);
+    };
+
+    // Trigger 'leave' event if user was previously on a room
+    function leaveRoom(room) {
+        socket.emit('leave', {'username': username, 'room': room});
+
+        document.querySelectorAll('.select-room').forEach(p => {
+            p.style.color = "black";
+        });
     }
 
+    // Trigger 'join' event
+    function joinRoom(room) {
+
+        // Join room
+        socket.emit('join', {'username': username, 'room': room});
+
+        // Highlight selected room
+        document.querySelector('#' + CSS.escape(room)).style.color = "#ffc107";
+        document.querySelector('#' + CSS.escape(room)).style.backgroundColor = "white";
+
+        // Clear message area
+        document.querySelector('#display-message-section').innerHTML = '';
+
+        // Autofocus on text box
+        document.querySelector("#user_message").focus();
+    }
+
+    // Scroll chat window down
+    function scrollDownChatWindow() {
+        const chatWindow = document.querySelector("#display-message-section");
+        chatWindow.scrollTop = chatWindow.scrollHeight;
+    }
+
+    // Print system messages
+    function printSysMsg(msg) {
+        const p = document.createElement('p');
+        p.setAttribute("class", "system-msg");
+        p.innerHTML = msg;
+        document.querySelector('#display-message-section').append(p);
+        scrollDownChatWindow()
+
+        // Autofocus on text box
+        document.querySelector("#user_message").focus();
+    }
 });
