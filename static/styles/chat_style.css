@@ -1,4 +1,6 @@
-
+body{
+    background-color: #99aab5;
+}
 .wrapper {
     display: flex;
 }
