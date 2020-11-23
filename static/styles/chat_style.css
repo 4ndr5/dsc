@@ -23,9 +23,9 @@
     padding-right:2em;
 }
 
-#sidebar p:hover {
-    color: #99aab5;
-}
+/* #sidebar p:hover {
+    background-color: #ffc107;
+} */
 
 #sidebar h4 {padding-left: 0.5em;}
 
