@@ -55,7 +55,7 @@ document.addEventListener('DOMContentLoaded', () => {
 
 
         }
-        scrollDownChatWindow();
+        // scrollDownChatWindow();
     });
 
     //send msg
