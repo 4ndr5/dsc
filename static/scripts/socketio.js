@@ -99,8 +99,8 @@ document.addEventListener('DOMContentLoaded', () => {
         socket.emit('join', {'username': username, 'room': room});
 
         // Highlight selected room
-        document.querySelector('#' + CSS.escape(room)).style.color = "white";
-        document.querySelector('#' + CSS.escape(room)).style.backgroundColor = "#2c2f33";
+        document.querySelector('#' + CSS.escape(room)).style.color = "#2c2f33";
+        document.querySelector('#' + CSS.escape(room)).style.backgroundColor = "white";
 
         // Clear message area
         document.querySelector('#display-message-section').innerHTML = '';
