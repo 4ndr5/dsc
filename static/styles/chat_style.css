@@ -84,6 +84,7 @@ body{
     padding-left: 1em;
     padding-right: 1em;
     bottom: 0;
+    background-color: #99aab5;
 }
 
 input[type=text]:focus{
@@ -154,7 +155,7 @@ input[type=text]:focus{
 }
 
 #msg-input {
-    border-color: #ffc107;
+    border-color: #7289da;
     border-width: 5px;
 }
 
