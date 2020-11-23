@@ -87,6 +87,7 @@ body{
 }
 input[type=text]{
     background-color: #99aab5;
+    border-color: #7289da;
 }
 input[type=text]:focus{
     border-color: #7289da;
@@ -104,7 +105,7 @@ input[type=text]:focus{
     margin-left: 1em;
     padding: 0.5em 0.5em 0.5em 1em;
     border-radius: 5px;
-    border-color: grey;
+    border-color: #99aab5;
     border-width: 0.5px;
     border-style: solid;
     background-color: #C2DBFB;
@@ -120,7 +121,7 @@ input[type=text]:focus{
     margin-right:1em;
     padding: 0.5em 0.5em 0.5em 1em;
     border-radius: 5px;
-    border-color: #206ED2;
+    border-color: #7289da;
     border-width: 1px;
     border-style: solid;
     /* animation */
