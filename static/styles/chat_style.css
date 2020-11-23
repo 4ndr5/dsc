@@ -147,13 +147,13 @@ input[type=text]:focus{
 .other-username {
     font-weight: bold;
     font-size: 1.1em;
-    color: #206ED2;
+    color: #752d4b;
 }
 
 .my-username {
     font-weight: bold;
     font-size: 1.1em;
-    color: #FF6B13;
+    color:#29319b;
 }
 
 #msg-input {
