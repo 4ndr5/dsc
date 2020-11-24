@@ -2,20 +2,23 @@
 
 {% extends "prelogin-layout.html" %} 
 
-{% block title %} DSC {% endblock %}
- 
-{% block content %} 
-    <h1>NAXUI</h1>
+{% block title %}  {% endblock %}
 
-    <form action="{{ url_for('index')}}", method="POST">
+{% block content %}
+        <h2>Get started!</h2>
+        <p>Create your free Discrod account!</p>
 
-        {{ displayField(form.username, 'Username', autocomplete="off", autofocus=true)}}
-        {{ displayField(form.password, 'Password')}}
-        {{ displayField(form.confirm_pwrd, 'Confirm Password')}}
+        <form action="{{ url_for('index') }}", method="POST">
+            {{ displayField(form.username, 'Username', autocomplete="off", autofocus=true) }}
+            {{ displayField(form.password, 'Password') }}
+            {{ displayField(form.confirm_pwrd, 'Retype Password') }}
+            <div class="form-group">
+                <input type="submit" value="Create" class="btn btn-warning" style="color: #2c2f33; background-color: #7289da; border-color: #7289da;">
+            </div>
+            {{ form.csrf_token }}
+        </form>
 
-        <div>
-            {{ form.submit_button }}
-        </div>
-        {{ form.csrf_token}}   
-    </form>
+        <hr>
+
+        <p>Already registered? <a href={{url_for('login')}}>Log in</a>.</p>
 {% endblock %}

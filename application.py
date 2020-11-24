@@ -8,12 +8,14 @@ from models import *
 
 
 # App configuartion
+
 app = Flask(__name__)
 app.secret_key = os.environ.get('SECRET')
+# app.secret_key = 'temp'
 
-# Database configuration
+# db
 app.config['SQLALCHEMY_DATABASE_URI']=os.environ.get('DATABASE_URL')
-
+# app.config['SQLALCHEMY_DATABASE_URI']='postgres://ztgdtarcblhscz:f75e1a6cd2bcfd802b30e756567c9e448190fa5dd1a51c2670a3d6919fc379ac@ec2-54-224-175-142.compute-1.amazonaws.com:5432/d8h1aim9ltuv4k'
 db = SQLAlchemy(app)
 
 #Initialize Flask Socketio
@@ -104,3 +106,4 @@ def leave(data):
 # Run, debug
 if __name__ == "__main__":
     app.run()
+    # socketio.run(app, debug=True)
