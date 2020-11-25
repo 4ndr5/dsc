@@ -85,8 +85,11 @@ input[type='text']:focus, input[type='password']:focus {
 input[type='password']{
     background-color: #99aab5;
     border-color:  #7289da;
+    width: 30%;
 }
 input[type='text']{
     background-color: #99aab5;
     border-color:  #7289da;   
+    width: 30%;
+
 }
