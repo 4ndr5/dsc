@@ -84,6 +84,7 @@ body{
     padding-left: 1em;
     padding-right: 1em;
     bottom: 0;
+    margin-left: 2%;
 }
 input[type=text]{
     background-color: #99aab5;
