@@ -33,9 +33,12 @@ body{
     padding-right:2em;
 }
 
-/* #sidebar p:hover {
-    background-color: #ffc107;
-} */
+#sidebar p:hover {
+    background-color: #6b6b6b;
+}
+#logout-btn span:hover{
+    background-color: #6b6b6b;
+}
 
 #sidebar h4 {padding-left: 0.5em;}
 
@@ -50,20 +53,12 @@ body{
 }
 
 @media (max-width: 567px) {
-    #sidebar {
-        display: none;
-    }
 
     #sidebar.view-sidebar {
         display: block;
     }
 
-    #show-sidebar-button {
-        visibility: visible;
-        opacity: 1;
-    }
 }
-
 
 .cursor-pointer {
     cursor: pointer;s
@@ -84,7 +79,6 @@ body{
     padding-left: 1em;
     padding-right: 1em;
     bottom: 0;
-    margin-left: 2%;
 }
 input[type=text]{
     background-color: #99aab5;

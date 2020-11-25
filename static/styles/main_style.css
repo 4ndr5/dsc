@@ -9,6 +9,8 @@ body{
 #main-section {
     overflow: hidden; /* Makee this div contain its floated children */
     width: 100%;
+    margin-left: 2%;
+
 }
 
 .jumbotron {
@@ -92,4 +94,7 @@ input[type='text']{
     border-color:  #7289da;   
     width: 30%;
 
+}
+.login-div{
+    margin-left: 2%;
 }
